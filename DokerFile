@@ -1,17 +1,9 @@
-# Stage 1: Build with Maven
-FROM maven:3.9-eclipse-temurin-17 AS build
-WORKDIR /app
-COPY . .
-RUN mvn clean package -DskipTests
+FROM eclipse-temurin:17-jdk-alpine
 
-# Stage 2: Lightweight Runtime
-FROM eclipse-temurin:17-jre-alpine
 WORKDIR /app
-# Matches the standard Maven JAR output name
-COPY --from=build /app/target/*.jar app.jar
 
-# Bind to Render's required port 
-ENV PORT=10000
+COPY target/*.jar app.jar
+
 EXPOSE 10000
 
-ENTRYPOINT ["java", "-jar", "app.jar", "--server.port=${PORT}"]
+ENTRYPOINT ["java","-jar","app.jar","--server.port=10000"]
