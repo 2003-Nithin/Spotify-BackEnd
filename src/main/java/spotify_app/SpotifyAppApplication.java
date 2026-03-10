@@ -7,7 +7,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class SpotifyAppApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SpotifyAppApplication.class, args);
+
+        SpringApplication.run(SpotifyAppApplication.class, args);
 	}
 
 }
